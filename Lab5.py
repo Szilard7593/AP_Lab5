@@ -1,7 +1,4 @@
 #Sa se determine subsecventa de lungime maxima cu proprietatea
-import math
-
-
 def estePrim(p): #Functie ajutatoare pentru a putea afla subsecventa cu o anumita prorprietate
     if p < 2:
         return False
@@ -92,6 +89,24 @@ def subsecventa_10(lista):
             l = 0
     return pmax,lmax
 
+#7. oricare doua elemente consecutive difera printr-un numar prim
+def diferaprinnumarprim(p,q):
+    if (p and q) < 0:
+        return False
+    prim = abs(p-q)
+    if estePrim(prim):
+        return True
+    return False
+
+'''
+def clasadetest():
+    assert(diferaprinnumarprim(5,3) == True)
+    assert(diferaprinnumarprim(3,5) == True)
+    assert(diferaprinnumarprim(1,1) == False)
+    assert(diferaprinnumarprim(1,2) == False)
+    assert(diferaprinnumarprim(10,20) == False)
+'''
+
 def main():
     lista = [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
     p , l = subsecventa_4(lista) #Expected (15,7)
@@ -131,5 +146,6 @@ def main():
     listaT9 = [0,0,0,0,0,0,1,2,3,3,2,1,-2,-3,-7,-5,-11]
     p,q = subsecventa_10(listaT9)
     print(listaT9[p:p+q]) #Expected [3, 2, 1, -2, -3, -7, -5, -11]
+
 
 main()
