@@ -1,5 +1,6 @@
 #Sa se determine subsecventa de lungime maxima cu proprietatea
-#4.Contin doar numere prime
+import math
+
 
 def estePrim(p): #Functie ajutatoare pentru a putea afla subsecventa cu o anumita prorprietate
     if p < 2:
@@ -10,6 +11,7 @@ def estePrim(p): #Functie ajutatoare pentru a putea afla subsecventa cu o anumit
     return True
 
 #TODO Teste ca sa verificam ca functioneaza optim
+#4.Contin doar numere prime
 def subsecventa_4(lista):
     pmax, lmax = -1, 0  # subsecventa de lungime maxima p = de unde pornim, l = lungimea
     p, l = -1, 0  # de unde pornim, si lungimea
@@ -50,6 +52,45 @@ def subsecventa_8(lista):
             l = 0
     return pmax,lmax
 
+def gcd(a,b):#Daca avem numere negative ar trebui sa le luam modulul ca sa putem lua in scope si pe cele negative
+    if a < 0:
+        a = -a
+    if b < 0:
+        b = -b
+    if b == 0:
+        return a
+    if a == 0:
+        return b
+    while b:
+        a,b = b,a%b
+    return a
+
+def relativPrime(a,b):
+    return gcd(a,b) == 1
+    #return math.gcd(a,b) == 1
+
+#3. Oricare doua elemente consecutive sunt relativ prime intre ele (a, b relativ prime daca si numai daca cmmdc(a,b) = 1)
+def subsecventa_10(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+
+    if len(lista) < 2:#Nu putem compara daca nu sunt minim doua elemente
+        return -1, 0
+
+    for i in range(1,len(lista)):
+        if relativPrime(lista[i-1],lista[i]):
+            if l == 0:
+                p = i - 1 #deoarece lista noastra porneste de la indexul 1, trebuie sa luam start-u; de la 0
+                l = 2 #pentru ca avem nevoie de prima pereche
+            else:
+                l += 1
+            if l > lmax:
+                lmax = l
+                pmax = p
+        else:
+            l = 0
+    return pmax,lmax
+
 def main():
     lista = [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
     p , l = subsecventa_4(lista) #Expected (15,7)
@@ -77,5 +118,17 @@ def main():
     listaT6 = []
     m,p = subsecventa_8(listaT6)
     print(listaT6[m:m+p])#Expected (-1,0) si []
+
+    listaT7 = [1,2,3,4,5,6,7,8,9,10]
+    k,l = subsecventa_10(listaT7)
+    print(listaT7[k:k+l]) #Expected (0,len(lista)) si lista
+
+    listaT8 = [1,2,3,4,6,8,16,31,1]
+    o,z = subsecventa_10(listaT8)
+    print(listaT8[o:o+z]) #Expected (0,4) si [1,2,3,4]
+
+    listaT9 = [0,0,0,0,0,0,1,2,3,3,2,1,-2,-3,-7,-5,-11]
+    p,q = subsecventa_10(listaT9)
+    print(listaT9[p:p+q]) #Expected [3, 2, 1, -2, -3, -7, -5, -11]
 
 main()
