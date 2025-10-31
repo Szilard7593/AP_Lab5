@@ -69,6 +69,7 @@ def relativPrime(a,b):
     return gcd(a,b) == 1
     #return math.gcd(a,b) == 1
 
+#TODO TESTE CU ASERTIUNI
 #3. Oricare doua elemente consecutive sunt relativ prime intre ele (a, b relativ prime daca si numai daca cmmdc(a,b) = 1)
 def subsecventa_10(lista):
     p,l = -1,0
