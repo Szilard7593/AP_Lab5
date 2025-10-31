@@ -27,6 +27,28 @@ def subsecventa_4(lista):
 
     return pmax, lmax
 
+#5.Au toate elementele in intervalul [0,10]
+def elementeInInterval(p):
+    if 0 <= p <= 10:
+        return True
+    return False
+
+#TODO teste pentru a verifica ca functioneaza optim
+def subsecventa_8(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+
+    for i,e in enumerate(lista):
+        if elementeInInterval(e): #Verifcam daca elementul ales apartine intervalului
+            if l == 0: # Initializam un sir nou
+                p = i #Si p ia pozitia 0, in caz contrar marim lungimea cu 1
+            l += 1
+            if l > lmax: #daca lungimea o crecut face o copie pentru
+                lmax = l
+                pmax = p
+        else: # daca nu, incepem din nou, daca nu verifica conditia
+            l = 0
+    return pmax,lmax
 
 def main():
     lista = [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
@@ -40,5 +62,20 @@ def main():
     listaT3 = [1,1,1,1,1,1,1,1,1,1,1]
     t,n = subsecventa_4(listaT3) #Expected (-1,0)
     print(listaT3[t:t+n]) #Expected []
+
+    q,w = subsecventa_8(lista)
+    print(lista[q:q+w]) #Expected (0,len(lista)) si [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
+
+    listaT4 = [1,2,3,4,5,-1,6,7,8,0,12,9,10]
+    e,r = subsecventa_8(listaT4)
+    print(listaT4[e:e+r]) #Expected (0,5) si [1,2,3,4,5]
+
+    listaT5 = [-1, -1, -1, -1, -1, -1, 100, 100, 100, 100, 100, 100]
+    s,t = subsecventa_8(listaT5)
+    print(listaT5[s:s+t]) #Expected (-1,0) si []
+
+    listaT6 = []
+    m,p = subsecventa_8(listaT6)
+    print(listaT6[m:m+p])#Expected (-1,0) si []
 
 main()
