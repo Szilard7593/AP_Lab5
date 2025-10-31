@@ -91,12 +91,8 @@ def subsecventa_10(lista):
 
 #7. oricare doua elemente consecutive difera printr-un numar prim
 def diferaprinnumarprim(p,q):
-    if (p and q) < 0:
-        return False
     prim = abs(p-q)
-    if estePrim(prim):
-        return True
-    return False
+    return estePrim(prim)
 
 '''
 def clasadetest():
@@ -105,6 +101,9 @@ def clasadetest():
     assert(diferaprinnumarprim(1,1) == False)
     assert(diferaprinnumarprim(1,2) == False)
     assert(diferaprinnumarprim(10,20) == False)
+    assert (diferaprinnumarprim(10, 21) == True)
+    assert (diferaprinnumarprim(-11, -24) == True)
+    assert (diferaprinnumarprim(-11, 20) == True)
 '''
 
 def main():
@@ -146,6 +145,5 @@ def main():
     listaT9 = [0,0,0,0,0,0,1,2,3,3,2,1,-2,-3,-7,-5,-11]
     p,q = subsecventa_10(listaT9)
     print(listaT9[p:p+q]) #Expected [3, 2, 1, -2, -3, -7, -5, -11]
-
 
 main()
