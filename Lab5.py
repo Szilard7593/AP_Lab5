@@ -23,7 +23,7 @@ def subsecventa_4(lista):
                 lmax = l    #lungimea maxima devine lungimea gasita pana acum
                 pmax = p    #pozitia din care am inceput
         else:
-            l = 0  # resetam lungimea
+            l = 0  # resetam lungimea daca urmatorul numar este prim si o luam de la capat
 
     return pmax, lmax
 
@@ -36,5 +36,9 @@ def main():
     listaT2 = [1,2,3,4,5,6,7,8,9,10]
     r, m = subsecventa_4(listaT2) #Excepted (1,2)
     print(listaT2[r:r + m]) #Expected [2,3]
+
+    listaT3 = [1,1,1,1,1,1,1,1,1,1,1]
+    t,n = subsecventa_4(listaT3) #Expected (-1,0)
+    print(listaT3[t:t+n]) #Expected []
 
 main()
