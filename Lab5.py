@@ -94,6 +94,23 @@ def diferaprinnumarprim(p,q):
     prim = abs(p-q)
     return estePrim(prim)
 
+def subsecventa_7(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+    for i in range(len(lista)):
+        if diferaprinnumarprim(lista[i-1],lista[i]):
+            if l == 0:
+                p = i - 1
+                l = 2
+            else:
+                l += 1
+            if l > lmax:
+                lmax = l
+                pmax = p
+        else:
+            l = 0
+    return pmax,lmax
+
 '''
 def clasadetest():
     assert(diferaprinnumarprim(5,3) == True)
@@ -145,5 +162,13 @@ def main():
     listaT9 = [0,0,0,0,0,0,1,2,3,3,2,1,-2,-3,-7,-5,-11]
     p,q = subsecventa_10(listaT9)
     print(listaT9[p:p+q]) #Expected [3, 2, 1, -2, -3, -7, -5, -11]
+
+    listaT10 = [1,2,3,4,5,6,7,8,9,10]
+    r,s = subsecventa_7(listaT10)
+    print(listaT10[r:r+s])#Expected []
+
+    listaT11 = [-11,-8,-1,2,5,1,2,3,4,5,3]
+    x,y = subsecventa_7(listaT11)
+    print(listaT11[x:x+y])#Expected [-11,-8,-1,2,5]
 
 main()
