@@ -130,6 +130,26 @@ def subsecventa_7(lista):
             l = 0
     return pmax,lmax
 
+#6.are toate elementele distincte intre ele
+def subsecventa_6(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+    for i in range(1,len(lista)):
+        if lista[i-1] != lista[i]:
+            if l == 0:
+                p = i - 1
+                l = 2
+            else:
+                l = l + 1
+
+            if l > lmax:
+                lmax = l
+                pmax = p
+
+        else:
+            l = 0
+    return pmax,lmax
+
 '''
 def clasadetest():
     assert(diferaprinnumarprim(5,3) == True)
@@ -166,7 +186,7 @@ def celmult3valoridistincte(lista):
 def subsecventa_5(lista):
     p,l = -1, 0
     pmax,lmax = -1, 0
-    for i in range(len(lista)):
+    for i in range(1,len(lista)):
         if lista[i-1] == lista[i]: #conditia necesara ca sa erificam ca eleemtele sunt egale
             if l == 0:
                 p = i - 1
@@ -228,9 +248,11 @@ def main():
     x,y = subsecventa_7(listaT11)
     print(listaT11[x:x+y])#Expected [-11,-8,-1,2,5]
 
-    listaT12 = [1,2,3,4,5,6,7,8,9,10]
-    t,u = subsecventa_5(listaT12)
+    listaT12 = [1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10]
+    t,u = subsecventa_6(listaT12)
     print(listaT12[t:t+u])
+
+
 
 
 main()
