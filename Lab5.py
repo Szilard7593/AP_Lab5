@@ -94,6 +94,24 @@ def diferaprinnumarprim(p,q):
     prim = abs(p-q)
     return estePrim(prim)
 
+#1.   x[i] < x[i+1] < ... < x[i+p]
+def subsecventa_1(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+    for i in range(1,len(lista)):
+        if lista[i-1] < lista[i]:
+            if l == 0:
+                p = i - 1
+                l = 2
+            else:
+                l += 1
+            if l > lmax:
+                lmax = l
+                pmax = p
+        else:
+            l = 0
+    return pmax,lmax
+
 def subsecventa_7(lista):
     p,l = -1,0
     pmax,lmax = -1,0
@@ -171,4 +189,8 @@ def main():
     x,y = subsecventa_7(listaT11)
     print(listaT11[x:x+y])#Expected [-11,-8,-1,2,5]
 
+    listaT12 = [2,2,2,2,2]
+    print(subsecventa_1(listaT12))
+    t,u = subsecventa_1(listaT12)
+    print(listaT12[t:t+u])
 main()
