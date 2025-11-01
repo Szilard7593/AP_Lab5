@@ -200,6 +200,29 @@ def subsecventa_5(lista):
             l = 0
     return pmax,lmax
 
+#16.scrierea in baza 10 este aceeasi
+def aceleasicifre(a,b):
+    return set(str(a)) == set(str(b))
+
+def subsecventa_16(lista):
+    p,l = -1,0
+    pmax,lmax = -1,0
+    for i in range(1,len(lista)):
+        if aceleasicifre(lista[i-1],lista[i]):
+            if l == 0:
+                p = i - 1
+                l = 2
+            else:
+                l += 1
+
+            if l > lmax:
+                lmax = l
+                pmax = p
+
+        else:
+            l = 0
+    return pmax,lmax
+
 def main():
     lista = [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
     p , l = subsecventa_4(lista) #Expected (15,7)
@@ -251,6 +274,10 @@ def main():
     listaT12 = [1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10]
     t,u = subsecventa_6(listaT12)
     print(listaT12[t:t+u])
+
+    listaCuAeeasicifer = [3313, 113,331,11333,33333331,1111113,21314,2142,235]
+    m, n = subsecventa_10(listaCuAeeasicifer)
+    print(listaCuAeeasicifer[m:m+n]) #Expected [ 3313,113,11333,333331,111113]
 
 
 
