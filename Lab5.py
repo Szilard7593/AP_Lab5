@@ -223,6 +223,28 @@ def subsecventa_16(lista):
             l = 0
     return pmax,lmax
 
+#Subsecventa cu suma maxima
+'''
+def suma_maxima_subsecventa(lista):
+    max_ending_here = 0
+    max_so_far = float('-inf')
+    for i in lista:
+        max_ending_here = max(i, max_ending_here + i)
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+'''
+#Subsecventa cu suma maxima
+def suma_maxima_subsecventa(a):
+    n = len(a)
+    max_suma = float('-inf') #presupunem ca suma noastra este -infinit
+    for i in range(n): #iteram peste lista
+        suma_curenta = 0 #incepem suma de la 0
+        for j in range(i, n): #acum cautam subsecventa cu suma cea mai mare care incepe cu indexul i
+            suma_curenta += a[j]
+            if suma_curenta > max_suma: #daca suma curenta este mai mare ca -infinity o updatam
+                max_suma = suma_curenta
+    return max_suma
+
 def main():
     lista = [3,3,3,5,6,4,2,4,7,1,2,1,2,7,1,7,7,7,7,7,7,7]
     p , l = subsecventa_4(lista) #Expected (15,7)
@@ -279,7 +301,6 @@ def main():
     m, n = subsecventa_10(listaCuAeeasicifer)
     print(listaCuAeeasicifer[m:m+n]) #Expected [ 3313,113,11333,333331,111113]
 
-
-
+    print(suma_maxima_subsecventa([1,-1,1,-1,0]))
 
 main()
